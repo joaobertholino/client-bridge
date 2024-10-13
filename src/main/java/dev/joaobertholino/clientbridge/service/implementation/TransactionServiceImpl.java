@@ -64,7 +64,7 @@ public class TransactionServiceImpl implements TransactionService {
 			BigDecimal enterpriseNewBalance = enterprise.getBalance().add(subtractValue);
 			enterprise.setBalance(enterpriseNewBalance);
 		} else if (transactionType.equals(TransactionType.WITHDRAWAL) && enterprise.getBalance().doubleValue() >= addedValue.doubleValue()) {
-			BigDecimal clientNewBalance = client.getBalance().add(subtractValue);
+			BigDecimal clientNewBalance = client.getBalance().add(value);
 			client.setBalance(clientNewBalance);
 
 			BigDecimal enterpriseNewBalance = enterprise.getBalance().subtract(addedValue);
