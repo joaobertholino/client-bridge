@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,7 @@ public class ClientController {
 	@ApiResponses({
 			@ApiResponse(responseCode = "200", description = "Customer successfully inserted.", content = {@Content(schema = @Schema(implementation = ClientResponse.class), mediaType = "application/json")})})
 	@PostMapping("/insert")
-	public ClientResponse insertClient(@RequestBody ClientRequest clientRequest) {
+	public ClientResponse insertClient(@RequestBody @Validated ClientRequest clientRequest) {
 		return this.clientService.insertClient(clientRequest);
 	}
 }

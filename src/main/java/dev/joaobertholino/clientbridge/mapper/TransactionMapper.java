@@ -8,13 +8,14 @@ import dev.joaobertholino.clientbridge.response.ClientResponse;
 import dev.joaobertholino.clientbridge.response.EnterpriseResponse;
 import dev.joaobertholino.clientbridge.response.TransactionResponse;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Configuration
 public class TransactionMapper {
-	public static Transaction buildTransaction(Enterprise enterprise, Client client, TransactionRequest transactionRequest, BigDecimal feePercentage) {
+	public static Transaction buildTransaction(@Validated Enterprise enterprise, @Validated Client client, @Validated TransactionRequest transactionRequest, @Validated BigDecimal feePercentage) {
 		return new Transaction(null,
 				client,
 				enterprise,
@@ -24,7 +25,7 @@ public class TransactionMapper {
 				LocalDateTime.now());
 	}
 
-	public static TransactionResponse buildTransactionResponse(Transaction transaction) {
+	public static TransactionResponse buildTransactionResponse(@Validated Transaction transaction) {
 		ClientResponse clientResponse = ClientMapper.buildClientResponse(transaction.getClient());
 		EnterpriseResponse enterpriseResponse = EnterpriseMapper.buildEnterpriseResponse(transaction.getEnterprise());
 

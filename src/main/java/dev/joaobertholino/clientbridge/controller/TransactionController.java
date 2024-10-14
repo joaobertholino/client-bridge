@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,7 @@ public class TransactionController {
 			@ApiResponse(responseCode = "404", description = "Company was not found in the database.", content = {@Content(schema = @Schema(implementation = ExceptionResponse.class), mediaType = "application/json")}),
 			@ApiResponse(responseCode = "400", description = "Invalid transaction.", content = {@Content(schema = @Schema(implementation = ExceptionResponse.class), mediaType = "application/json")})})
 	@PostMapping("/make")
-	public TransactionResponse makeTransaction(@RequestBody TransactionRequest transactionRequest) {
+	public TransactionResponse makeTransaction(@RequestBody @Validated TransactionRequest transactionRequest) {
 		return this.transactionService.makeTransaction(transactionRequest);
 	}
 }

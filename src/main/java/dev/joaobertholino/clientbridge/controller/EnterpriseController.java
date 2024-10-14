@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ public class EnterpriseController {
 	@ApiResponses({
 			@ApiResponse(responseCode = "200", description = "Company successfully inserted.", content = {@Content(schema = @Schema(implementation = EnterpriseResponse.class), mediaType = "application/json")})})
 	@PostMapping("/insert")
-	public EnterpriseResponse insertEnterprise(@RequestBody EnterpriseRequest enterpriseRequest) {
-		return this.enterpriseService.insertEnterprise(EnterpriseMapper.buildEnterprise(enterpriseRequest));
+	public EnterpriseResponse insertEnterprise(@RequestBody @Validated EnterpriseRequest enterpriseRequest) {
+		return this.enterpriseService.insertEnterprise(enterpriseRequest);
 	}
 }
