@@ -3,6 +3,7 @@ package dev.joaobertholino.clientbridge.service.implementation;
 import dev.joaobertholino.clientbridge.mapper.EnterpriseMapper;
 import dev.joaobertholino.clientbridge.model.Enterprise;
 import dev.joaobertholino.clientbridge.repository.EnterpriseRepository;
+import dev.joaobertholino.clientbridge.request.EnterpriseRequest;
 import dev.joaobertholino.clientbridge.response.EnterpriseResponse;
 import dev.joaobertholino.clientbridge.service.EnterpriseService;
 import lombok.AllArgsConstructor;
@@ -14,8 +15,8 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 	private final EnterpriseRepository enterpriseRepository;
 
 	@Override
-	public EnterpriseResponse insertEnterprise(Enterprise enterprise) {
-		Enterprise enterpriseSaved = this.enterpriseRepository.save(enterprise);
+	public EnterpriseResponse insertEnterprise(EnterpriseRequest enterpriseRequest) {
+		Enterprise enterpriseSaved = this.enterpriseRepository.save(EnterpriseMapper.buildEnterprise(enterpriseRequest));
 		return EnterpriseMapper.buildEnterpriseResponse(enterpriseSaved);
 	}
 }
