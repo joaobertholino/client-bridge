@@ -1,6 +1,5 @@
 package dev.joaobertholino.clientbridge.controller;
 
-import dev.joaobertholino.clientbridge.mapper.EnterpriseMapper;
 import dev.joaobertholino.clientbridge.request.EnterpriseRequest;
 import dev.joaobertholino.clientbridge.response.EnterpriseResponse;
 import dev.joaobertholino.clientbridge.service.EnterpriseService;
