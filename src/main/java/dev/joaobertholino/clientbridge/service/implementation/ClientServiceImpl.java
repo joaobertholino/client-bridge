@@ -13,10 +13,11 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ClientServiceImpl implements ClientService {
 	private final ClientRepository clientRepository;
+	private final ClientMapper clientMapper;
 
 	@Override
 	public ClientResponse insertClient(ClientRequest clientRequest) {
-		Client clientSaved = this.clientRepository.save(ClientMapper.buildClient(clientRequest));
-		return ClientMapper.buildClientResponse(clientSaved);
+		Client clientSaved = this.clientRepository.save(this.clientMapper.buildClient(clientRequest));
+		return this.clientMapper.buildClientResponse(clientSaved);
 	}
 }

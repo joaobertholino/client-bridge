@@ -14,13 +14,14 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class SendCallBackImpl implements SendCallBack {
 	private final RestTemplate restTemplate;
+	private final TransactionMapper transactionMapper;
 
 	@Value(value = "${webhook.callback}")
 	private String webHookUrl;
 
 	@Override
 	public TransactionResponse sendTransactionCallback(Transaction transaction) {
-		TransactionResponse transactionResponse = TransactionMapper.buildTransactionResponse(transaction);
+		TransactionResponse transactionResponse = this.transactionMapper.buildTransactionResponse(transaction);
 		this.restTemplate.postForObject(this.webHookUrl, transactionResponse, String.class);
 		return transactionResponse;
 	}

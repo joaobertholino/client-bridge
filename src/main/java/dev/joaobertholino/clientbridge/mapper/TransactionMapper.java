@@ -7,15 +7,20 @@ import dev.joaobertholino.clientbridge.request.TransactionRequest;
 import dev.joaobertholino.clientbridge.response.ClientResponse;
 import dev.joaobertholino.clientbridge.response.EnterpriseResponse;
 import dev.joaobertholino.clientbridge.response.TransactionResponse;
-import org.springframework.context.annotation.Configuration;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Configuration
+@Component
+@RequiredArgsConstructor
 public class TransactionMapper {
-	public static Transaction buildTransaction(@Validated Enterprise enterprise, @Validated Client client, @Validated TransactionRequest transactionRequest, @Validated BigDecimal feePercentage) {
+	private final ClientMapper clientMapper;
+	private final EnterpriseMapper enterpriseMapper;
+
+	public Transaction buildTransaction(@Validated Enterprise enterprise, @Validated Client client, @Validated TransactionRequest transactionRequest, @Validated BigDecimal feePercentage) {
 		return new Transaction(null,
 				client,
 				enterprise,
@@ -25,9 +30,9 @@ public class TransactionMapper {
 				LocalDateTime.now());
 	}
 
-	public static TransactionResponse buildTransactionResponse(@Validated Transaction transaction) {
-		ClientResponse clientResponse = ClientMapper.buildClientResponse(transaction.getClient());
-		EnterpriseResponse enterpriseResponse = EnterpriseMapper.buildEnterpriseResponse(transaction.getEnterprise());
+	public TransactionResponse buildTransactionResponse(@Validated Transaction transaction) {
+		ClientResponse clientResponse = this.clientMapper.buildClientResponse(transaction.getClient());
+		EnterpriseResponse enterpriseResponse = this.enterpriseMapper.buildEnterpriseResponse(transaction.getEnterprise());
 
 		return new TransactionResponse(transaction.getId(),
 				clientResponse,

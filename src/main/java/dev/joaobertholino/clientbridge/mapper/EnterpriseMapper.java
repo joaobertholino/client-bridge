@@ -8,14 +8,14 @@ import org.springframework.validation.annotation.Validated;
 
 @Component
 public class EnterpriseMapper {
-	public static Enterprise buildEnterprise(@Validated EnterpriseRequest enterpriseRequest) {
+	public Enterprise buildEnterprise(@Validated EnterpriseRequest enterpriseRequest) {
 		return new Enterprise(null,
 				enterpriseRequest.name(),
 				enterpriseRequest.cnpj(),
 				enterpriseRequest.balance());
 	}
 
-	public static EnterpriseResponse buildEnterpriseResponse(@Validated Enterprise enterprise) {
+	public EnterpriseResponse buildEnterpriseResponse(@Validated Enterprise enterprise) {
 		return new EnterpriseResponse(enterprise.getId(),
 				enterprise.getName(),
 				enterprise.getCnpj(),

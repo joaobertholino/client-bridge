@@ -29,6 +29,7 @@ public class TransactionServiceImpl implements TransactionService {
 	private final TransactionRepository transactionRepository;
 	private final SendCallBack sendCallback;
 	private final NotificationComponent notificationComponent;
+	private final TransactionMapper transactionMapper;
 
 	@Override
 	public TransactionResponse makeTransaction(TransactionRequest transactionRequest) {
@@ -41,7 +42,7 @@ public class TransactionServiceImpl implements TransactionService {
 		Client clientSaved = this.clientRepository.save(client);
 		Enterprise enterpriseSaved = this.enterpriseRepository.save(enterprise);
 
-		Transaction transactionSaved = this.transactionRepository.save(TransactionMapper.buildTransaction(enterpriseSaved, clientSaved, transactionRequest, feePercent));
+		Transaction transactionSaved = this.transactionRepository.save(this.transactionMapper.buildTransaction(enterpriseSaved, clientSaved, transactionRequest, feePercent));
 		this.notificationComponent.sendNotification(clientSaved, transactionRequest.transactionType(), "successfully accomplished.");
 		return this.sendCallback.sendTransactionCallback(transactionSaved);
 	}

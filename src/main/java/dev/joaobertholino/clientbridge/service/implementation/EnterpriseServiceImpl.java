@@ -13,10 +13,11 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class EnterpriseServiceImpl implements EnterpriseService {
 	private final EnterpriseRepository enterpriseRepository;
+	private final EnterpriseMapper enterpriseMapper;
 
 	@Override
 	public EnterpriseResponse insertEnterprise(EnterpriseRequest enterpriseRequest) {
-		Enterprise enterpriseSaved = this.enterpriseRepository.save(EnterpriseMapper.buildEnterprise(enterpriseRequest));
-		return EnterpriseMapper.buildEnterpriseResponse(enterpriseSaved);
+		Enterprise enterpriseSaved = this.enterpriseRepository.save(this.enterpriseMapper.buildEnterprise(enterpriseRequest));
+		return this.enterpriseMapper.buildEnterpriseResponse(enterpriseSaved);
 	}
 }
