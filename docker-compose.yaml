@@ -1,7 +1,7 @@
 services:
   client-bridge:
     container_name: client-bridge
-    image: joaobertholino/client-bridge:latest
+#    image: joaobertholino/client-bridge:latest
     build:
       context: .
       dockerfile: Dockerfile

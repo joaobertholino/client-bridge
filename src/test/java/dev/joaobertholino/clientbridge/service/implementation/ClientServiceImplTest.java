@@ -1,6 +1,5 @@
 package dev.joaobertholino.clientbridge.service.implementation;
 
-import dev.joaobertholino.clientbridge.data.test.builder.ClientDataTestBuilder;
 import dev.joaobertholino.clientbridge.model.Client;
 import dev.joaobertholino.clientbridge.repository.ClientRepository;
 import dev.joaobertholino.clientbridge.request.ClientRequest;
@@ -33,9 +32,9 @@ class ClientServiceImplTest {
 
 	@BeforeAll
 	static void setUp() {
-		ClientServiceImplTest.clientResponse = ClientDataTestBuilder.clientResponseBuilder(UUID.randomUUID(), "Joao", "Bertholino", "joao@gmail.com", "48624704839", BigDecimal.valueOf(100));
-		ClientServiceImplTest.clientRequest = ClientDataTestBuilder.clientRequestBuilder("Joao", "Bertholino", "joao@gmail.com", "48624704839", BigDecimal.valueOf(100));
-		ClientServiceImplTest.client = ClientDataTestBuilder.clientBuilder(ClientServiceImplTest.clientResponse.id(), "Joao", "Bertholino", "joao@gmail.com", "48624704839", BigDecimal.valueOf(100));
+		ClientServiceImplTest.clientResponse = new ClientResponse(UUID.randomUUID(), "Joao", "Bertholino", "joao@gmail.com", "48624704839", BigDecimal.valueOf(100));
+		ClientServiceImplTest.clientRequest = new ClientRequest("Joao", "Bertholino", "joao@gmail.com", "48624704839", BigDecimal.valueOf(100));
+		ClientServiceImplTest.client = new Client(ClientServiceImplTest.clientResponse.id(), "Joao", "Bertholino", "joao@gmail.com", "48624704839", BigDecimal.valueOf(100));
 	}
 
 	@Test
