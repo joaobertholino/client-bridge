@@ -23,7 +23,6 @@ public class ClientExceptionHandler {
 
 		ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(status, clientNotFoundException.getMessage());
 		problemDetail.setTitle("Client not found");
-		problemDetail.setType(URI.create(request.getRequestURI()));
 
 		this.sendCallBack.sendExceptionCallBack(problemDetail);
 		return ResponseEntity.status(status).body(problemDetail);

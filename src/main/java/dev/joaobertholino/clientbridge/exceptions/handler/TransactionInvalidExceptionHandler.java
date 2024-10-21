@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.net.URI;
-
 @RestControllerAdvice
 @RequiredArgsConstructor
 public class TransactionInvalidExceptionHandler {
@@ -23,7 +21,6 @@ public class TransactionInvalidExceptionHandler {
 
 		ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(status, transactionInvalidException.getMessage());
 		problemDetail.setTitle("Transaction invalid");
-		problemDetail.setType(URI.create(request.getRequestURI()));
 
 		this.sendCallBack.sendExceptionCallBack(problemDetail);
 		return ResponseEntity.status(status).body(problemDetail);

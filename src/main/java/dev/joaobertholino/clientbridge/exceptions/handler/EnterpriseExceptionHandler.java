@@ -23,7 +23,6 @@ public class EnterpriseExceptionHandler {
 
 		ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(status, enterpriseNotFoundException.getMessage());
 		problemDetail.setTitle("Enterprise not found");
-		problemDetail.setType(URI.create(request.getRequestURI()));
 
 		this.sendCallBack.sendExceptionCallBack(problemDetail);
 		return ResponseEntity.status(status).body(problemDetail);
