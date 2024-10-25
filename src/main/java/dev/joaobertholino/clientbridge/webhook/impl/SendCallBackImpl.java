@@ -16,7 +16,7 @@ public class SendCallBackImpl implements SendCallBack {
 	private final RestTemplate restTemplate;
 	private final TransactionMapper transactionMapper;
 
-	@Value(value = "${webhook.callback}")
+	@Value(value = "${spring.webhook.callback}")
 	private String webHookUrl;
 
 	@Override
