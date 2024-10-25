@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: client-bridge
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:client-bridge
+    username: sa
+    password:
+  data:
+    jdbc:
+      dialect: h2
+    jpa:
+      hibernate:
+        ddl-auto: create
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: joaobertholino964@gmail.com
+    password: jlig ougp egfv uxsb
+    smtp:
+        auth: true
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+  docker:
+    compose:
+      enabled: false
+  webhook:
+    callback: https://webhook.site/d699fc3d-275f-4c42-8267-d7cc6d1fb4c4
