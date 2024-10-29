@@ -20,13 +20,13 @@ CREATE TABLE tb_enterprise
 
 CREATE TABLE tb_transaction
 (
-    id                         UUID           NOT NULL,
-    client_client_id           UUID           NOT NULL,
-    enterprise_enterprise_id   UUID           NOT NULL,
-    transaction_value          DECIMAL(10, 2) NOT NULL,
-    transaction_fee_percentage DECIMAL(3, 2)  NOT NULL,
-    transaction_type           VARCHAR(255)   NOT NULL,
-    transaction_data_time      TIMESTAMP      NOT NULL,
+    id                         UUID                        NOT NULL,
+    client_client_id           UUID                        NOT NULL,
+    enterprise_enterprise_id   UUID                        NOT NULL,
+    transaction_value          DECIMAL(10, 2)              NOT NULL,
+    transaction_fee_percentage DECIMAL(3, 2)               NOT NULL,
+    transaction_type           VARCHAR(255)                NOT NULL,
+    transaction_data_time      TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     CONSTRAINT pk_tb_transaction PRIMARY KEY (id)
 );
 
