@@ -1,9 +1,40 @@
 services:
-  client-bridge:
-    container_name: client-bridge
+  nginx:
+    container_name: nginx-server
+    build:
+      context: container/dockerfiles/nginx/.
+      dockerfile: Dockerfile
+    ports:
+      - '8000:80'
+  client-bridge-one: &app
+    container_name: client-bridge-one
     image: joaobertholino/client-bridge:latest
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/client-bridge?currentSchema=public
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345
     ports:
-      - '8080:8080'
+      - '8080'
+    depends_on:
+      - postgres
+  client-bridge-two:
+    <<: *app
+    container_name: client-bridge-two
+  client-bridge-three:
+    <<: *app
+    container_name: client-bridge-three
+  client-bridge-four:
+    <<: *app
+    container_name: client-bridge-four
+  postgres:
+    container_name: postgres-database
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=client-bridge
+    ports:
+      - '5432'

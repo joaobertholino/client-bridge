@@ -2,10 +2,10 @@ spring:
   application:
     name: client-bridge
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:client-bridge
-    username: sa
-    password:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
   data:
     jdbc:
       dialect: h2
@@ -29,8 +29,8 @@ spring:
         smtp:
           starttls:
             enable: true
+  webhook:
+    callback: https://webhook.site/c9791efb-2e29-47e1-a553-c2e6f71d1b6e
   docker:
     compose:
       enabled: false
-  webhook:
-    callback: https://webhook.site/d699fc3d-275f-4c42-8267-d7cc6d1fb4c4
