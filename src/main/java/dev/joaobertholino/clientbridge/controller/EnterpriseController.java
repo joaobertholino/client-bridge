@@ -28,7 +28,7 @@ public class EnterpriseController {
 			description = "Inserts a new company by retrieving the data from the requisition body, returning the data of the entered company.")
 	@ApiResponses({
 			@ApiResponse(responseCode = "200", description = "Company successfully inserted.", content = {@Content(schema = @Schema(implementation = EnterpriseResponse.class), mediaType = "application/json")})})
-	@PostMapping("/insert")
+	@PostMapping(value = "/insert", produces = "application/json")
 	public EnterpriseResponse insertEnterprise(@RequestBody @Validated EnterpriseRequest enterpriseRequest) {
 		return this.enterpriseService.insertEnterprise(enterpriseRequest);
 	}

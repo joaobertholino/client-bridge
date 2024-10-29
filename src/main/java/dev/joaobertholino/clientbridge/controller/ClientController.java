@@ -28,7 +28,7 @@ public class ClientController {
 			description = "Inserts a new customer according to the contents of the requisition body, returning the inserted customer.")
 	@ApiResponses({
 			@ApiResponse(responseCode = "200", description = "Customer successfully inserted.", content = {@Content(schema = @Schema(implementation = ClientResponse.class), mediaType = "application/json")})})
-	@PostMapping("/insert")
+	@PostMapping(value = "/insert", produces = "application/json")
 	public ClientResponse insertClient(@RequestBody @Validated ClientRequest clientRequest) {
 		return this.clientService.insertClient(clientRequest);
 	}

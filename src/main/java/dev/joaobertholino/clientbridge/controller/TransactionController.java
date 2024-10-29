@@ -32,7 +32,7 @@ public class TransactionController {
 			@ApiResponse(responseCode = "404", description = "Customer was not found in the database.", content = {@Content(schema = @Schema(implementation = ProblemDetail.class), mediaType = "application/json")}),
 			@ApiResponse(responseCode = "404", description = "Company was not found in the database.", content = {@Content(schema = @Schema(implementation = ProblemDetail.class), mediaType = "application/json")}),
 			@ApiResponse(responseCode = "400", description = "Invalid transaction.", content = {@Content(schema = @Schema(implementation = ProblemDetail.class), mediaType = "application/json")})})
-	@PostMapping("/make")
+	@PostMapping(value = "/make", produces = "application/json")
 	public TransactionResponse makeTransaction(@RequestBody @Validated TransactionRequest transactionRequest) {
 		return this.transactionService.makeTransaction(transactionRequest);
 	}
