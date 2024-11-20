@@ -3,22 +3,15 @@ package dev.joaobertholino.clientbridge.mapper;
 import dev.joaobertholino.clientbridge.model.Enterprise;
 import dev.joaobertholino.clientbridge.request.EnterpriseRequest;
 import dev.joaobertholino.clientbridge.response.EnterpriseResponse;
-import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 
-@Component
-public class EnterpriseMapper {
-	public Enterprise buildEnterprise(@Validated EnterpriseRequest enterpriseRequest) {
-		return new Enterprise(null,
-				enterpriseRequest.name(),
-				enterpriseRequest.cnpj(),
-				enterpriseRequest.balance());
-	}
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+public interface EnterpriseMapper {
 
-	public EnterpriseResponse buildEnterpriseResponse(@Validated Enterprise enterprise) {
-		return new EnterpriseResponse(enterprise.getId(),
-				enterprise.getName(),
-				enterprise.getCnpj(),
-				enterprise.getBalance());
-	}
+	@Mapping(target = "id", ignore = true)
+	Enterprise buildEnterprise(EnterpriseRequest enterpriseRequest);
+
+	EnterpriseResponse buildEnterpriseResponse(Enterprise enterprise);
 }
