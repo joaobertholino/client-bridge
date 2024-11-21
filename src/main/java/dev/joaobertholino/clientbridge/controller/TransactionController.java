@@ -32,8 +32,8 @@ public class TransactionController {
 	@ApiResponses({
 		@ApiResponse(responseCode = "302", description = "Transaction found successfully.", content = {@Content(schema = @Schema(implementation = TransactionResponse.class), mediaType = "application/json")}),
 		@ApiResponse(responseCode = "404", description = "Transaction not found", content = {@Content(schema = @Schema(implementation = ProblemDetail.class), mediaType = "application/json")})})
-	@GetMapping(value = "/find/transaction", produces = "application/json")
-	public ResponseEntity<List<TransactionResponse>> findTransactionByType(TransactionType type) {
+	@GetMapping(value = "/find", produces = "application/json")
+	public ResponseEntity<List<TransactionResponse>> findTransactionByType(@RequestParam TransactionType type) {
 		return ResponseEntity.status(HttpStatus.FOUND).body(this.transactionService.findTransactionByType(type));
 	}
 

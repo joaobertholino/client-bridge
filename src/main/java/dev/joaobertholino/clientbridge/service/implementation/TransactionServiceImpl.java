@@ -17,6 +17,7 @@ import dev.joaobertholino.clientbridge.request.TransactionRequest;
 import dev.joaobertholino.clientbridge.response.TransactionResponse;
 import dev.joaobertholino.clientbridge.service.TransactionService;
 import dev.joaobertholino.clientbridge.webhook.SendCallBack;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ public class TransactionServiceImpl implements TransactionService {
 	private final TransactionMapper transactionMapper;
 
 	@Override
-	public List<TransactionResponse> findTransactionByType(TransactionType type) {
+	public List<TransactionResponse> findTransactionByType(@NotNull TransactionType type) {
 		List<Transaction> transactionList = this.transactionRepository.findTransactionByTransactionType(type);
 
 		if (!transactionList.isEmpty()) {

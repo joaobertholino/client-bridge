@@ -8,6 +8,7 @@ import dev.joaobertholino.clientbridge.request.EnterpriseRequest;
 import dev.joaobertholino.clientbridge.response.EnterpriseResponse;
 import dev.joaobertholino.clientbridge.service.EnterpriseService;
 import lombok.AllArgsConstructor;
+import org.hibernate.validator.constraints.br.CNPJ;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,7 +20,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 	private final EnterpriseMapper enterpriseMapper;
 
 	@Override
-	public EnterpriseResponse findEnterpriseByCnpj(String cnpj) {
+	public EnterpriseResponse findEnterpriseByCnpj(@CNPJ String cnpj) {
 		Optional<Enterprise> enterprise = this.enterpriseRepository.findEnterpriseByCnpj(cnpj);
 		return this.enterpriseMapper.buildEnterpriseResponse(enterprise.orElseThrow(() -> new EnterpriseNotFoundException("Enterprise was not found.")));
 	}

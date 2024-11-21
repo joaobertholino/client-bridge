@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -27,8 +28,8 @@ public class ClientController {
 		description = "It searches for a Customer already entered in the database, returning the Customer if it finds it, or returning an error if the CPF entered does not correspond to any Customer saved in the database.")
 	@ApiResponses({
 		@ApiResponse(responseCode = "302", description = "Customer found successfully.", content = {@Content(schema = @Schema(implementation = ClientResponse.class), mediaType = "application/json")})})
-	@GetMapping(value = "/find/client", produces = "application/json")
-	public ResponseEntity<ClientResponse> findClientByCpf(String cpf) {
+	@GetMapping(value = "/find", produces = "application/json")
+	public ResponseEntity<ClientResponse> findClientByCpf(@RequestParam String cpf) {
 		return ResponseEntity.status(HttpStatus.FOUND).body(this.clientService.findClientByCpf(cpf));
 	}
 

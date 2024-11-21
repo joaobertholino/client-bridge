@@ -8,6 +8,7 @@ import dev.joaobertholino.clientbridge.request.ClientRequest;
 import dev.joaobertholino.clientbridge.response.ClientResponse;
 import dev.joaobertholino.clientbridge.service.ClientService;
 import lombok.AllArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,7 +20,7 @@ public class ClientServiceImpl implements ClientService {
 	private final ClientMapper clientMapper;
 
 	@Override
-	public ClientResponse findClientByCpf(String clientCpf) {
+	public ClientResponse findClientByCpf(@CPF String clientCpf) {
 		Optional<Client> client = this.clientRepository.findClientByCpf(clientCpf);
 		return this.clientMapper.buildClientResponse(client.orElseThrow(() -> new ClientNotFoundException("Customer was not found.")));
 	}

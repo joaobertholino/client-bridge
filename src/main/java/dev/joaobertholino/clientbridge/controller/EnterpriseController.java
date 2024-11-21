@@ -27,8 +27,8 @@ public class EnterpriseController {
 		description = "It searches for a Company already entered in the database, returning the Company if it finds it, or returning an error if the CNPJ entered does not correspond to any Company saved in the database.")
 	@ApiResponses({
 		@ApiResponse(responseCode = "302", description = "Company found successfully.", content = {@Content(schema = @Schema(implementation = EnterpriseResponse.class), mediaType = "application/json")})})
-	@GetMapping(value = "/find/enterprise", produces = "application/json")
-	public ResponseEntity<EnterpriseResponse> findEnterpriseByCnpj(String cnpj) {
+	@GetMapping(value = "/find", produces = "application/json")
+	public ResponseEntity<EnterpriseResponse> findEnterpriseByCnpj(@RequestParam String cnpj) {
 		return ResponseEntity.status(HttpStatus.FOUND).body(this.enterpriseService.findEnterpriseByCnpj(cnpj));
 	}
 
