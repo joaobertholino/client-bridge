@@ -4,6 +4,7 @@ import dev.joaobertholino.clientbridge.enums.TransactionType;
 import dev.joaobertholino.clientbridge.exceptions.ClientNotFoundException;
 import dev.joaobertholino.clientbridge.exceptions.EnterpriseNotFoundException;
 import dev.joaobertholino.clientbridge.exceptions.TransactionInvalidException;
+import dev.joaobertholino.clientbridge.exceptions.TransactionNotFoundException;
 import dev.joaobertholino.clientbridge.mapper.TransactionMapper;
 import dev.joaobertholino.clientbridge.model.Client;
 import dev.joaobertholino.clientbridge.model.Enterprise;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +32,16 @@ public class TransactionServiceImpl implements TransactionService {
 	private final SendCallBack sendCallback;
 	private final NotificationComponent notificationComponent;
 	private final TransactionMapper transactionMapper;
+
+	@Override
+	public List<TransactionResponse> findTransactionByType(TransactionType type) {
+		List<Transaction> transactionList = this.transactionRepository.findTransactionByTransactionType(type);
+
+		if (!transactionList.isEmpty()) {
+			return transactionList.stream().map(this.transactionMapper::buildTransactionResponse).toList();
+		}
+		throw new TransactionNotFoundException("No transactions of the type entered were found.");
+	}
 
 	@Override
 	public TransactionResponse makeTransaction(TransactionRequest transactionRequest) {
