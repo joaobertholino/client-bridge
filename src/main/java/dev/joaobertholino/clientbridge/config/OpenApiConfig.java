@@ -12,13 +12,13 @@ public class OpenApiConfig {
 	@Bean
 	public OpenAPI openApi() {
 		Contact contact = new Contact()
-				.name("João Bertholino")
-				.email("comercial.bertholino@gmail.com");
+			.name("João Bertholino")
+			.email("comercial.bertholino@gmail.com");
 
 		return new OpenAPI().info(new Info()
-				.title("Client Bridge API")
-				.description("API for transactions between customers and businesses.")
-				.version("1.0")
-				.contact(contact));
+			.title("Client Bridge API")
+			.description("API for transactions between customers and businesses.")
+			.version("1.0")
+			.contact(contact));
 	}
 }

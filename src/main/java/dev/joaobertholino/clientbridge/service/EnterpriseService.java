@@ -5,5 +5,6 @@ import dev.joaobertholino.clientbridge.response.EnterpriseResponse;
 
 public interface EnterpriseService {
 	EnterpriseResponse findEnterpriseByCnpj(String cnpj);
+
 	EnterpriseResponse insertEnterprise(EnterpriseRequest enterprise);
 }

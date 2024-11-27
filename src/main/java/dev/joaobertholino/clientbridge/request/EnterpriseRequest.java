@@ -6,13 +6,13 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public record EnterpriseRequest(
-		@NotBlank(message = "The company name cannot be null or void.")
-		String name,
+	@NotBlank(message = "The company name cannot be null or void.")
+	String name,
 
-		@NotBlank(message = "The company's CNPJ cannot be null or void.")
-		String cnpj,
+	@NotBlank(message = "The company's CNPJ cannot be null or void.")
+	String cnpj,
 
-		@NotNull(message = "The company's balance cannot be zero.")
-		BigDecimal balance
+	@NotNull(message = "The company's balance cannot be zero.")
+	BigDecimal balance
 ) {
 }

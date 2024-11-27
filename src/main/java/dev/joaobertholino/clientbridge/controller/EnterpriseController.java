@@ -33,10 +33,10 @@ public class EnterpriseController {
 	}
 
 	@Operation(
-			summary = "Inserts a new company.",
-			description = "Inserts a new company by retrieving the data from the requisition body, returning the data of the entered company.")
+		summary = "Inserts a new company.",
+		description = "Inserts a new company by retrieving the data from the requisition body, returning the data of the entered company.")
 	@ApiResponses({
-			@ApiResponse(responseCode = "200", description = "Company successfully inserted.", content = {@Content(schema = @Schema(implementation = EnterpriseResponse.class), mediaType = "application/json")})})
+		@ApiResponse(responseCode = "200", description = "Company successfully inserted.", content = {@Content(schema = @Schema(implementation = EnterpriseResponse.class), mediaType = "application/json")})})
 	@PostMapping(value = "/insert", produces = "application/json")
 	public ResponseEntity<EnterpriseResponse> insertEnterprise(@RequestBody @Validated EnterpriseRequest enterpriseRequest) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.enterpriseService.insertEnterprise(enterpriseRequest));

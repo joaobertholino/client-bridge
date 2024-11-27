@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -34,10 +33,10 @@ public class ClientController {
 	}
 
 	@Operation(
-			summary = "Inserts a new customer.",
-			description = "Inserts a new customer according to the contents of the requisition body, returning the inserted customer.")
+		summary = "Inserts a new customer.",
+		description = "Inserts a new customer according to the contents of the requisition body, returning the inserted customer.")
 	@ApiResponses({
-			@ApiResponse(responseCode = "200", description = "Customer successfully inserted.", content = {@Content(schema = @Schema(implementation = ClientResponse.class), mediaType = "application/json")})})
+		@ApiResponse(responseCode = "200", description = "Customer successfully inserted.", content = {@Content(schema = @Schema(implementation = ClientResponse.class), mediaType = "application/json")})})
 	@PostMapping(value = "/insert", produces = "application/json")
 	public ResponseEntity<ClientResponse> insertClient(@RequestBody @Validated ClientRequest clientRequest) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.clientService.insertClient(clientRequest));

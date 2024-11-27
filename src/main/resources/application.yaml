@@ -23,7 +23,7 @@ spring:
     username: joaobertholino964@gmail.com
     password: jlig ougp egfv uxsb
     smtp:
-        auth: true
+      auth: true
     properties:
       mail:
         smtp:

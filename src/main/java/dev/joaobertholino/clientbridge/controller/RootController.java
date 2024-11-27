@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class RootController {
 
 	@Operation(
-			summary = "Inserts a new customer.",
-			description = "Inserts a new customer according to the contents of the requisition body, returning the inserted customer.")
+		summary = "Inserts a new customer.",
+		description = "Inserts a new customer according to the contents of the requisition body, returning the inserted customer.")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "System root resource", content = @Content(schema = @Schema(implementation = String.class), mediaType = "text/plain"))})
+		@ApiResponse(responseCode = "200", description = "System root resource", content = @Content(schema = @Schema(implementation = String.class), mediaType = "text/plain"))})
 	@GetMapping(produces = "application/json")
 	public ResponseEntity<String> root() {
 		return ResponseEntity.status(HttpStatus.OK).body("This is the root of the system :)");

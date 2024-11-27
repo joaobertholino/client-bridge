@@ -5,5 +5,6 @@ import dev.joaobertholino.clientbridge.response.ClientResponse;
 
 public interface ClientService {
 	ClientResponse findClientByCpf(String clientCpf);
+
 	ClientResponse insertClient(ClientRequest clientRequest);
 }
